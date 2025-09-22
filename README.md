@@ -86,13 +86,18 @@ bash ./scripts/setup.sh
 ```
 
 Dev server:
-
 ```bash
+# front and back end
 sudo chmod +x ./scripts/start-dev.sh
 bash ./scripts/start-dev.sh
+
+# db
+docker compose up -d
+# to stop
+docker compose down
 ```
 
-Note: This script starts the ASP.NET backend in the background, then starts the frontend and it will wait until you stop running front end to stop ASP.NET
+Note: This script starts the ASP.NET backend in the background, then starts the frontend and it will wait until you stop running front end to stop ASP.NET. Docker is managing the db currently. Eventually, I will migrate ASP.NET to be inside the docker container as well.
 
 Deploy to prod:
 
