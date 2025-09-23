@@ -26,7 +26,7 @@ export interface PremiumCalculationResponse {
   providedIn: 'root',
 })
 export class QuoteService {
-  private readonly apiUrl = environment.apiUrl + '/api';
+  private readonly apiUrl = environment.apiUrl + '/api/';
   private readonly quoteUrl = this.apiUrl + 'quotes';
 
   constructor(private http: HttpClient) {}
@@ -41,7 +41,7 @@ export class QuoteService {
 
   calculatePremium(request: PremiumCalculationRequest): Observable<PremiumCalculationResponse> {
     return this.http.post<PremiumCalculationResponse>(
-      `${this.apiUrl}/quotes/calculate-premium`,
+      `${this.apiUrl}quotes/calculate-premium`,
       request
     );
   }

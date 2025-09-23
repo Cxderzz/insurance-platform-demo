@@ -1,5 +1,5 @@
 <div
-  class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6"
+  class="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-6"
 >
   <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
     <h2 class="text-2xl font-bold mb-6 text-gray-800">Personal Information</h2>
@@ -14,7 +14,7 @@
           type="text"
           id="customerName"
           formControlName="customerName"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           [class.border-red-500]="isFieldInvalid('customerName')"
         />
         @if (isFieldInvalid('customerName')) {
@@ -33,7 +33,7 @@
           type="email"
           id="email"
           formControlName="email"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           [class.border-red-500]="isFieldInvalid('email')"
         />
         @if (isFieldInvalid('email')) {
@@ -52,9 +52,11 @@
           type="date"
           id="dateOfBirth"
           formControlName="dateOfBirth"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          autocomplete="bday"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           [class.border-red-500]="isFieldInvalid('dateOfBirth')"
         />
+
         @if (isFieldInvalid('dateOfBirth')) {
         <div class="mtt-1 text-sm text-red-600">
           {{ getFieldError('dateOfBirth') }}
@@ -74,7 +76,7 @@
 
         <button
           type="submit"
-          class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50"
+          class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
           [disabled]="!personalForm.valid"
         >
           Next: Coverage Details
