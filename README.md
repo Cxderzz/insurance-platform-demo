@@ -1,4 +1,4 @@
-# Insurance Platform Demo
+# "Sosure" - Insurance Platform Demo
 
 ## Background
 
@@ -86,6 +86,7 @@ bash ./scripts/setup.sh
 ```
 
 Dev server:
+
 ```bash
 # front and back end
 sudo chmod +x ./scripts/start-dev.sh
