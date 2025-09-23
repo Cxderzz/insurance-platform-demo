@@ -1,17 +1,41 @@
-<div class="p-6">
-  <h2 class="text-2xl font-bold mb-4">Quote test page</h2>
-  <button (click)="addTestQuote()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
-    Add Test Quote
-  </button>
+<div
+  class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6"
+>
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Get Your Insurance Quote</h1>
 
-  <div class="space-y-2">
-    <h3 class="text-lg font-semibold">Existing Quotes:</h3>
-    @for (quote of quotes; track quote.id) {
-    <div class="border p-3 rounded">
-      <p><strong>Name:</strong> {{ quote.customerName }}</p>
-      <p><strong>Product:</strong> {{ quote.productType }}</p>
-      <p><strong>Premium:</strong> ${{ quote.premium }}</p>
+    <p class="text-gray-600 mb-8">
+      Get a personalized insurance quote in just a few simple steps. It only takes a few minutes!
+    </p>
+
+    <div class="space-y-4 mb-8">
+      <div class="flex items-center text-sm text-gray-600">
+        <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+          <span class="text-blue-600 font-semibold">1</span>
+        </div>
+        Personal Information
+      </div>
+
+      <div class="flex items-center text-sm text-gray-600">
+        <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+          <span class="text-blue-600 font-semibold">2</span>
+        </div>
+        Coverage Details
+      </div>
+
+      <div class="flex items-center text-sm text-gray-600">
+        <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+          <span class="text-blue-600 font-semibold">3</span>
+        </div>
+        Review & Get Quote
+      </div>
     </div>
-    }
+
+    <button
+      (click)="startQuote()"
+      class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+    >
+      Start Your Quote
+    </button>
   </div>
 </div>

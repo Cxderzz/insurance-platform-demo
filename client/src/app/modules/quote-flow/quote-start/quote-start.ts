@@ -1,28 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { QuoteService, Quote } from '../../../core/services/quote';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { QuoteFlowService } from '../../../core/services/quote-flow.service';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-quote-start',
-  imports: [],
   templateUrl: './quote-start.html',
-  styleUrl: './quote-start.scss',
+  standalone: true,
+  imports: [CommonModule],
 })
-export class QuoteStartComponent implements OnInit {
-  quotes: Quote[] = [];
-  constructor(private quoteService: QuoteService) {}
-  ngOnInit() {
-    this.quoteService.getQuotes().subscribe((quotes) => {
-      this.quotes = quotes;
-    });
-  }
-  addTestQuote() {
-    const testQuote: Quote = {
-      customerName: 'Angular test user',
-      productType: 'Car Insurance',
-      premium: 800,
-    };
+export class QuoteStartComponent {
+  constructor(private router: Router, private quoteFlowService: QuoteFlowService) {}
 
-    this.quoteService.createQuote(testQuote).subscribe(() => {
-      this.ngOnInit();
-    });
+  startQuote() {
+    // Reset any existing quote data
+    this.quoteFlowService.resetQuote();
+    // Navigate to first step
+    this.router.navigate(['/quote/personal']);
   }
 }

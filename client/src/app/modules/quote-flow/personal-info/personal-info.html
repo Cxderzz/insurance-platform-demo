@@ -1,1 +1,85 @@
-<p>personal-info works!</p>
+<div
+  class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6"
+>
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Personal Information</h2>
+
+    <form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+      <!-- Customer Name -->
+      <div class="mb-4">
+        <label for="customerName" class="block text-sm font-medium text-gray-700 mb-2">
+          Full Name *
+        </label>
+        <input
+          type="text"
+          id="customerName"
+          formControlName="customerName"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          [class.border-red-500]="isFieldInvalid('customerName')"
+        />
+        @if (isFieldInvalid('customerName')) {
+        <div class="mtt-1 text-sm text-red-600">
+          {{ getFieldError('customerName') }}
+        </div>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+          Email Address *
+        </label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          [class.border-red-500]="isFieldInvalid('email')"
+        />
+        @if (isFieldInvalid('email')) {
+        <div class="mtt-1 text-sm text-red-600">
+          {{ getFieldError('email') }}
+        </div>
+        }
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="mb-6">
+        <label for="dateOfBirth" class="block text-sm font-medium text-gray-700 mb-2">
+          Date of Birth *
+        </label>
+        <input
+          type="date"
+          id="dateOfBirth"
+          formControlName="dateOfBirth"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          [class.border-red-500]="isFieldInvalid('dateOfBirth')"
+        />
+        @if (isFieldInvalid('dateOfBirth')) {
+        <div class="mtt-1 text-sm text-red-600">
+          {{ getFieldError('dateOfBirth') }}
+        </div>
+        }
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between">
+        <button
+          type="button"
+          (click)="goBack()"
+          class="px-4 py-2 text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+        >
+          Back
+        </button>
+
+        <button
+          type="submit"
+          class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50"
+          [disabled]="!personalForm.valid"
+        >
+          Next: Coverage Details
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

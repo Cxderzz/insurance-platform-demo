@@ -1,1 +1,74 @@
-<p>quote-summary works!</p>
+<div
+  class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6"
+>
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">Quote Summary</h2>
+
+    <!-- Quote Details -->
+    @if (quoteData) {
+    <div class="space-y-4 mb-6">
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h3 class="font-semibold text-gray-700 mb-3">Personal Information</h3>
+        <div class="space-y-2 text-sm">
+          <div><span class="font-medium">Name:</span> {{ quoteData.customerName }}</div>
+          <div><span class="font-medium">Email:</span> {{ quoteData.email }}</div>
+          <div>
+            <span class="font-medium">Date of Birth:</span> {{ quoteData.dateOfBirth | date }}
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <h3 class="font-semibold text-gray-700 mb-3">Coverage Details</h3>
+        <div class="space-y-2 text-sm">
+          <div>
+            <span class="font-medium">Product:</span>
+            {{ getProductTypeLabel(quoteData.productType) }}
+          </div>
+          <div>
+            <span class="font-medium">Coverage Amount:</span>
+            {{ quoteData.coverageAmount | currency }}
+          </div>
+          <div><span class="font-medium">Excess:</span> {{ quoteData.excess | currency }}</div>
+        </div>
+      </div>
+
+      <!-- Premium Display -->
+      <div class="border-t pt-4">
+        <div class="flex justify-between items-center">
+          <span class="text-lg font-semibold">Annual Premium:</span>
+          @if (isLoadingPremium) {
+          <div class="text-gray-500">Calculating...</div>
+          } @else if (premiumError) {
+          <div class="text-red-600 text-sm">
+            {{ premiumError }}
+          </div>
+          } @else {
+          <div class="text-2xl font-bold text-green-600">
+            {{ calculatedPremium | currency }}
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    }
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between">
+      <button
+        type="button"
+        (click)="goBack()"
+        class="px-4 py-2 text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+      >
+        Back
+      </button>
+
+      <button
+        (click)="submitQuote()"
+        [disabled]="isSubmitting || isLoadingPremium || premiumError !== null"
+        class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50 transition-colors"
+      >
+        {{ isSubmitting ? 'Submitting...' : 'Get This Quote' }}
+      </button>
+    </div>
+  </div>
+</div>

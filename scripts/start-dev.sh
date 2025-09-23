@@ -7,7 +7,7 @@ BACKEND_PID=$!
 
 # start frontend
 cd ../../client
-npm start
+ng serve
 
-# when npm start finishes, kill backend too
+# when ng serve finishes, kill backend too
 kill $BACKEND_PID
