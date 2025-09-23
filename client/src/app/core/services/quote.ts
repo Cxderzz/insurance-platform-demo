@@ -15,15 +15,15 @@ export interface Quote {
   providedIn: 'root',
 })
 export class QuoteService {
-  private apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.apiUrl + '/api/quotes';
 
   constructor(private http: HttpClient) {}
 
   getQuotes(): Observable<Quote[]> {
-    return this.http.get<Quote[]>(`${this.apiUrl}/quotes`);
+    return this.http.get<Quote[]>(`${this.apiUrl}`);
   }
 
   createQuote(quote: Omit<Quote, 'id' | 'createdAt'>): Observable<Quote> {
-    return this.http.post<Quote>(`${this.apiUrl}/quotes`, quote);
+    return this.http.post<Quote>(`${this.apiUrl}`, quote);
   }
 }

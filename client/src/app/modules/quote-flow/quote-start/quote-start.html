@@ -1,1 +1,17 @@
-<p>quote-start works!</p>
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Quote test page</h2>
+  <button (click)="addTestQuote()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+    Add Test Quote
+  </button>
+
+  <div class="space-y-2">
+    <h3 class="text-lg font-semibold">Existing Quotes:</h3>
+    @for (quote of quotes; track quote.id) {
+    <div class="border p-3 rounded">
+      <p><strong>Name:</strong> {{ quote.customerName }}</p>
+      <p><strong>Product:</strong> {{ quote.productType }}</p>
+      <p><strong>Premium:</strong> ${{ quote.premium }}</p>
+    </div>
+    }
+  </div>
+</div>
