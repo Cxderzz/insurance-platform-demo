@@ -11,19 +11,38 @@ export interface Quote {
   createdAt?: string;
 }
 
+export interface PremiumCalculationRequest {
+  productType: string;
+  coverageAmount: number;
+  excess: number;
+  dateOfBirth: string;
+}
+
+export interface PremiumCalculationResponse {
+  premium: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class QuoteService {
-  private readonly apiUrl = environment.apiUrl + '/api/quotes';
+  private readonly apiUrl = environment.apiUrl + '/api/';
+  private readonly quoteUrl = this.apiUrl + 'quotes';
 
   constructor(private http: HttpClient) {}
 
   getQuotes(): Observable<Quote[]> {
-    return this.http.get<Quote[]>(`${this.apiUrl}`);
+    return this.http.get<Quote[]>(`${this.quoteUrl}`);
   }
 
   createQuote(quote: Omit<Quote, 'id' | 'createdAt'>): Observable<Quote> {
-    return this.http.post<Quote>(`${this.apiUrl}`, quote);
+    return this.http.post<Quote>(`${this.quoteUrl}`, quote);
+  }
+
+  calculatePremium(request: PremiumCalculationRequest): Observable<PremiumCalculationResponse> {
+    return this.http.post<PremiumCalculationResponse>(
+      `${this.apiUrl}quotes/calculate-premium`,
+      request
+    );
   }
 }
