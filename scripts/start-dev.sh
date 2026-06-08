@@ -4,6 +4,7 @@
 cd server/InsuranceAPI
 dotnet run &
 BACKEND_PID=$!
+echo $BACKEND_PID
 
 # start frontend
 cd ../../client
